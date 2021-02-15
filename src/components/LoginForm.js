@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
       textAlign: 'left',
       alignItems: 'center',
       justifyContent: 'center',
+      fontFamily: 'Roboto-Bold',
+      letterSpacing: .4,
       //width: '100%'
   }
 })

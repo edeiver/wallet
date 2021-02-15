@@ -40,6 +40,8 @@ export const globalStyles = StyleSheet.create({
         color: COLORS.mainGray,
         fontSize: 15,
         textTransform: 'uppercase',
+        fontFamily: 'Roboto-Regular',
+        letterSpacing: 1.2
         
     },
     input: {
@@ -52,6 +54,8 @@ export const globalStyles = StyleSheet.create({
         width: '70%',
         borderRadius: 15,
         marginVertical: 10,
-        fontSize: 15
+        fontSize: 15,
+        fontFamily: 'Roboto-Regular',
+
     }
 })
