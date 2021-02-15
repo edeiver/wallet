@@ -1,11 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import LoginForm from '../components/LoginForm'
+import { globalStyles } from '../styles'
 
-const Login = () => {
+const Login = (props) => {
     return (
-        <View>
-            <Text>Login</Text>
-        </View>
+        <SafeAreaView style={[ globalStyles.main ]}>
+            <View style={[ globalStyles.main, globalStyles.bgMain]}>
+                <View style={[ globalStyles.main, globalStyles.center, globalStyles.safePadding]}>
+                    <LoginForm/>
+                </View>
+            </View>
+        </SafeAreaView>
     )
 }
 
