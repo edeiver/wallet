@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './src/navigation';
 import * as Font from 'expo-font';
+import AuthContext from './src/context/AuthContext';
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false)
@@ -25,7 +26,9 @@ export default function App() {
   }
 
   return (
-    <Navigation/>
+    <AuthContext.Provider>
+      <Navigation/>
+    </AuthContext.Provider>
   );
 }
 
