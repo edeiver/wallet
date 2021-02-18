@@ -31,13 +31,16 @@ const LoginForm = () => {
                 onChangeText={(text) => {setPhone(text)}}
                 placeholder='3058618336'
                 style={[globalStyles.input]}
+                keyboardType='phone-pad'
+                autoCapitalize='none'
             />
             <TextInput
                 value={password}
                 onChangeText={(text) => {setPasswprd(text)}}
                 placeholder='**********'
                 style={[globalStyles.input]}
-
+                secureTextEntry={true}
+                autoCapitalize='none'
             />
             <TouchableOpacity onPress={() => login()} style={[globalStyles.button, styles.btnWidth ]}>
                 <Text style={[globalStyles.buttonTitle]}>enviar</Text>

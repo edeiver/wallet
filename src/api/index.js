@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 import moment from 'moment'
 
-const URL = 'http://192.168.1.9:8000/';
+const URL = 'http://192.168.1.6:8000/';
 //const URL = 'http://127.0.0.1:8000/';
 
 
@@ -16,16 +16,29 @@ const getAuthenticationHeaders = async () => {
        console.log(error); 
     }
 }
+const millisecondsToMinutesAndSeconds = async (millis)=> {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return { minutes, seconds}
+    //return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
 const getAccesToken = async () => {
     console.log(`getAccesToken`);
     const currentDateTime =  moment().format('YYYY-MM-DD hh:mm:ss a')
     const dateTimeSignIn = await AsyncStorage.getItem('dateTimeSignIn')
     //const remainingTime = currentDateTime.diff(dateTimeSignIn, 'minutes')
+ 
+    const dateA =  moment(currentDateTime, 'HH:mm:ss')
+    const dateB =  moment(dateTimeSignIn, 'HH:mm:ss')
+    //console.log(`a`,dateA, dateB);
 
-    const remainingTime = moment.duration(currentDateTime.diff(dateTimeSignIn));
+    const remainingTime = await millisecondsToMinutesAndSeconds(moment(currentDateTime, 'HH:mm:ss').diff(moment(dateTimeSignIn, 'HH:mm:ss')))
+    //console.log('remainingTime: ', remainingTime);
+    const  {  minutes, seconds } = remainingTime
 
-    console.log('remainingTime: ', remainingTime);
-    if (remainingTime >=5) {
+
+    if (minutes >=5) {
         return await getRefreshToken()
     } else {
        return await AsyncStorage.getItem('access_token')
@@ -57,8 +70,6 @@ export const Login = async (phone, password) => {
             phone,
             password
         })
-        await getAccesToken()
-
         console.log('response ok: ', response.data);
         return response.data
     } catch (e) {

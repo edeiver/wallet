@@ -26,7 +26,10 @@ const Provider = ({ children }) => {
                 await AsyncStorage.setItem('access_token', token);
                 await AsyncStorage.setItem('refresh_token', refresh);
                 setIsAuth(true)
+                console.log('signIn', isAuth);
             } catch (error) {
+                setIsAuth(false)
+
                 console.log(error);
             }
         },

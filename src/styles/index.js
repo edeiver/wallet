@@ -57,5 +57,26 @@ export const globalStyles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Roboto-Regular',
 
+    },
+    roboto:{
+        fontFamily: 'Roboto-Regular'
+        //fontFamily: 'Roboto'
+    },
+    robotoBold:{
+        //fontFamily: 'Roboto_bold'
+        fontFamily: 'Roboto-Bold'
+    },
+    robotoMedium: {
+        //fontFamily: 'Roboto_medium'
+        fontFamily: 'Roboto-Medium'
+
+    },
+    robotoLight:{
+        fontFamily: 'Roboto-Light'
+        //fontFamily: 'Roboto_light'
+    },
+    robotoItalic: {
+        //fontFamily: 'Roboto_italic'
+        fontFamily: 'Roboto-Italic'
     }
 })
