@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { StyleSheet, Text, View, SafeAreaView} from 'react-native'
+import Card from '../components/Card'
 import Header from '../components/Header'
 import { AuthContext } from '../context/AuthContext'
 import { globalStyles } from '../styles'
@@ -12,6 +13,9 @@ const Home = ({ navigation }) => {
                 <View style={[ globalStyles.safePaddingTop]}>
                     <Header isHome onPress={signOut}/>
                 </View>
+                <Card type='send'/>
+                <Card type='send'/>
+                <Card type='send'/>
             </View>
         </SafeAreaView>
     )

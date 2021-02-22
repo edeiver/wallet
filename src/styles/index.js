@@ -15,6 +15,10 @@ export const globalStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    alignItemsCenter: {
+        alignItems: 'center',
+
+    },
     row: {
         flexDirection: 'row'
     },

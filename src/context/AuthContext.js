@@ -8,7 +8,7 @@ const Provider = ({ children }) => {
     const [ isAuth, setIsAuth ] = useState( async () => {
         try {
             const access_token = await AsyncStorage.getItem('access_token');
-            if (access_token) {
+            if (access_token !== null) {
                 return true
             } else {
                 return false

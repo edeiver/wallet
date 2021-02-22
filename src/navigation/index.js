@@ -7,12 +7,12 @@ import AppNavigation from './AppNavigation';
 
 const Navigation = () => {
     const { isAuth } = useContext(AuthContext)
-    console.log('auth from nav', isAuth);
+    //console.log('auth from nav', JSON.stringify(isAuth));
     
     return (
         <NavigationContainer>
             {
-                !isAuth ? <AccountStack/> : <AppNavigation/>
+               isAuth && isAuth !== true ? <AppNavigation/> : <AccountStack/>
             }
         </NavigationContainer>
     )
