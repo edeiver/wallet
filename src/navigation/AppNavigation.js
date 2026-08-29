@@ -1,14 +1,21 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../screens/Home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+import Home from '../screens/Home';
+import Send from '../screens/Send';
+import Receive from '../screens/Receive';
+
+const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
-    console.log('AppNavigation');
     return (
-        <Stack.Navigator initialRouteName='Home' headerMode='none'>
+        <Stack.Navigator 
+        initialRouteName='Home'     
+        screenOptions={{ headerShown: false }}
+>
             <Stack.Screen name='Home' component={Home}/>
+            <Stack.Screen name='Send' component={Send}/>
+                <Stack.Screen name='Receive' component={Receive}/>
         </Stack.Navigator>
     )
 }   

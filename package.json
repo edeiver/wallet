@@ -8,26 +8,32 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.13.4",
-    "@react-native-community/masked-view": "0.1.10",
-    "@react-navigation/native": "^5.9.2",
-    "@react-navigation/stack": "^5.14.2",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-navigation/native": "^7.3.18",
+    "@react-navigation/native-stack": "^7.18.10",
     "axios": "^0.21.1",
-    "expo": "~40.0.0",
-    "expo-font": "~8.4.0",
-    "expo-status-bar": "~1.0.3",
+    "expo": "^57.0.9",
+    "expo-blur": "~57.0.2",
+    "expo-clipboard": "~57.0.1",
+    "expo-font": "~57.0.2",
+    "expo-linear-gradient": "~57.0.1",
+    "expo-status-bar": "~57.0.1",
     "moment": "^2.29.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-gesture-handler": "~1.8.0",
-    "react-native-reanimated": "~1.13.0",
-    "react-native-safe-area-context": "3.1.9",
-    "react-native-screens": "~2.15.2",
-    "react-native-web": "~0.13.12"
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-qrcode-svg": "^6.3.21",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "0.10.1"
   },
+  "private": true,
   "devDependencies": {
-    "@babel/core": "~7.9.0"
-  },
-  "private": true
+    "@babel/core": "^7.29.7"
+  }
 }
