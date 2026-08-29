@@ -1,36 +1,32 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { COLORS, globalStyles } from '../styles'
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons'
 
+const ICONS = {
+    send: { name: 'arrow-up-right', bg: COLORS.expenseBg, color: COLORS.expense },
+    receive: { name: 'arrow-down-left', bg: COLORS.incomeBg, color: COLORS.income },
+    withdraw: { name: 'arrow-down-circle', bg: COLORS.expenseBg, color: COLORS.expense },
+}
 
-const Card = ({ amount, description, type, title, date}) => {
+const Card = ({ amount, title, date, type }) => {
+    const icon = ICONS[type] ?? ICONS.send
+    const isIncome = type === 'receive'
+
     return (
-        <View style={[styles.card]}>
-           <View style={[ globalStyles.row, globalStyles.spaceBetween]}>
-            <View style={[ globalStyles.main, globalStyles.row, globalStyles.alignItemsCenter]}>
-                
-                {
-                    type==='send' &&
-                    <View style={styles.cardIcon}>
-                        <FontAwesome name="send-o" size={20} color={COLORS.mainBlack} />
-                    </View>
-
-                }
-                {
-                    type==='withdraw' && 
-                    <View style={styles.cardIcon}>
-                        <MaterialCommunityIcons name="cash-refund" size={20} color={COLORS.mainBlack} />
-                    </View>
-                }
-                <View>
-                <Text style={styles.cardText}>enviaste </Text>
-                <Text style={styles.cardSubtitle}>11-12-11 </Text>
+        <View style={[styles.card, globalStyles.glassCard, globalStyles.row, globalStyles.spaceBetween]}>
+            <View style={[globalStyles.row, globalStyles.alignItemsCenter]}>
+                <View style={[styles.cardIcon, { backgroundColor: icon.bg }]}>
+                    <Feather name={icon.name} size={18} color={icon.color} />
+                </View>
+                <View style={{ marginHorizontal: 10 }}>
+                    <Text style={styles.cardText}>{title}</Text>
+                    <Text style={styles.cardSubtitle}>{date}</Text>
                 </View>
             </View>
-            <View/>
-            <Text>Balance</Text>
-           </View>
+            <Text style={[styles.cardText, { color: isIncome ? COLORS.income : COLORS.textPrimary }]}>
+                {isIncome ? '+' : '-'}${Math.abs(amount).toFixed(2)}
+            </Text>
         </View>
     )
 }
@@ -39,27 +35,25 @@ export default Card
 
 const styles = StyleSheet.create({
     card: {
-        marginVertical: 10
-    },
-    cardBody:{
-        padding: 15,
+        marginVertical: 5,
+        padding: 12,
     },
     cardText: {
-        marginHorizontal: 10,
         ...globalStyles.robotoMedium,
-        color: COLORS.mainBlack
-
+        color: COLORS.textPrimary,
+        fontSize: 13.5,
     },
     cardSubtitle: {
-        marginHorizontal: 10,
         ...globalStyles.robotoLight,
-        fontSize: 12,
-        color: COLORS.mainBlack
+        fontSize: 11.5,
+        color: COLORS.textMuted,
+        marginTop: 2,
     },
     cardIcon: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
+        borderRadius: 19,
+        width: 38,
+        height: 38,
         alignItems: 'center',
-        padding:10
-    }
+        justifyContent: 'center',
+    },
 })

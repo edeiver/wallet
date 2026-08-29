@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './src/navigation';
 import * as Font from 'expo-font';
 import AuthContext from './src/context/AuthContext';
+import { ToastProvider } from './src/context/ToastContext';
+import { BalanceProvider } from './src/context/BalanceContext';
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false)
@@ -27,7 +29,11 @@ export default function App() {
 
   return (
     <AuthContext.Provider>
-      <Navigation/>
+      <BalanceProvider>
+        <ToastProvider>
+          <Navigation/>
+        </ToastProvider>
+      </BalanceProvider>
     </AuthContext.Provider>
   );
 }
