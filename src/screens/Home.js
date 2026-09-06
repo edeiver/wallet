@@ -19,13 +19,24 @@ import { globalStyles, COLORS } from "../styles";
 import ViewComponent from "../components/ViewComponent";
 import { useBalance } from "../context/BalanceContext";
 import { fetchTransactionsFake } from "../api/fakeApi";
+import {AntDesign} from '@expo/vector-icons';
+import BalanceChart from "../components/BalanceChart";
+import * as Clipboard from "expo-clipboard";
+import { useToast } from "../context/ToastContext";
 
 const Home = ({ navigation }) => {
   const { signOut } = useContext(AuthContext);
+  const { address } =  useBalance();
+  const { showToast } = useToast();
   const { balance, transactions, setTransactions, loadingTransactions, setLoadingTransactions, fetchTransactions } = useBalance();
   const [loading, setLoading] = useState(false);
   
+  const walletAddress = address ;
 
+const copy = async () => {
+    await Clipboard.setStringAsync(walletAddress);
+    showToast("Address copied", "success");
+  };
 
   useEffect(() => {
     fetchTransactions();
@@ -38,11 +49,23 @@ const Home = ({ navigation }) => {
         {/**
          * Balace
          */}
-        <View style={[styles.balaceDiv]}>
+        <View style={[styles.balaceDiv, globalStyles.glassCard]}>
           <Text style={styles.balanceLabel}>Balance available</Text>
           <Text style={styles.balanceAmount}>${balance.toFixed(2)}</Text>
+          <View style={styles.balanceDivider} />
+          <View style={[globalStyles.row, globalStyles.spaceBetween, globalStyles.alignItemsCenter]}>
+            <View>
+              <Text style={styles.balanceLabel}>{'Wallet address'}</Text>
+              <Text style={styles.walletAddress}>{walletAddress}</Text>
+            </View>
+            <TouchableOpacity onPress={() => {copy()}} style={styles.copyIcon}>
+              <AntDesign name="copy" size={22} color={COLORS.textPrimary} />
+            </TouchableOpacity>
+          </View>
+
         </View>
-        <LinearGradient
+        <BalanceChart/>
+        {/* <LinearGradient
           colors={[COLORS.meshBlue, COLORS.accentEnd, "#7B357F"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -56,7 +79,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.cardNumber}>•••• •••• •••• 4821</Text>
             <Text style={styles.cardHolder}>EDEIVER BARRANCO</Text>
           </View>
-        </LinearGradient>
+        </LinearGradient> */}
         <View
           style={[globalStyles.row, globalStyles.spaceBetween, { gap: 10 }]}
         >
@@ -136,17 +159,26 @@ const styles = StyleSheet.create({
   },
   balaceDiv: {
     gap: 4,
+    padding: 22,
+  
   },
   balanceLabel: {
     ...globalStyles.robotoMedium,
     fontSize: 12.5,
     color: COLORS.textSecondary,
     letterSpacing: 0.5,
+    marginBottom: 5,
   },
   balanceAmount: {
     ...globalStyles.robotoBold,
     fontSize: 42,
     color: COLORS.textPrimary,
+  },
+  walletAddress: {
+    ...globalStyles.robotoBold,
+    fontSize:20,
+    color: COLORS.textPrimary,
+    letterSpacing: 0.5,
   },
   card: {
     borderRadius: 22,
@@ -160,6 +192,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: "#E3C27A",
   },
+  copyIcon:{ padding: 8, borderRadius: 8, backgroundColor: COLORS.glassBorder },
   brand: {
     ...globalStyles.robotoBold,
     fontSize: 12,
@@ -206,5 +239,10 @@ const styles = StyleSheet.create({
     ...globalStyles.robotoMedium,
     fontSize: 12.5,
     color: COLORS.accentLink,
+  },
+  balanceDivider: {
+    height: 1,
+    backgroundColor: COLORS.glassBorder,
+    marginVertical: 12,
   },
 });
