@@ -10,7 +10,7 @@ const Header = ({ isHome=true, name = 'Edeiver Barranco E', initials = 'E.B' }) 
                 isHome &&
                 <View style={[styles.homeHeader, globalStyles.row, globalStyles.spaceBetween, globalStyles.alignItemsCenter]}>
                     <View>
-                        <Text style={styles.greeting}>Buenas tardes</Text>
+                        <Text style={styles.greeting}>Good afternoon</Text>
                         <Text style={styles.name}>{name}</Text>
                     </View>
                     <BlurView intensity={40} tint="dark" style={styles.avatar}>

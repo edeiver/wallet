@@ -6,6 +6,7 @@ const BalanceContext = createContext(null);
 export const BalanceProvider = ({ children }) => {
   const [balance, setBalance] = useState(1248.5); // Initial balance
   const [transactions, setTransactions] = useState([]);
+  const [address, setAddress] = useState('wallet.app/eb4821');
   const [loadingTransactions, setLoadingTransactions] = useState(false);
   const fetchTransactions = async () => {
     setLoadingTransactions(true);
@@ -28,7 +29,8 @@ export const BalanceProvider = ({ children }) => {
         setTransactions,
         loadingTransactions,
         setLoadingTransactions,
-        fetchTransactions
+        fetchTransactions,
+        address
       }}
     >
       {children}
